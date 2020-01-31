@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class CustomerTest {
     @Test
-    public void test() {
+    public void shouldProduceAStatementForGivenRentals() {
          Customer customer=new Customer( "safal");
          customer.addRental(new Rental(new Movie ("Dunkirk", Movie.REGULAR), 7));
         customer.addRental(new Rental(new Movie ("Dumbo", Movie.CHILDRENS), 7));
