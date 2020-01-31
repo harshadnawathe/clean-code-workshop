@@ -21,23 +21,54 @@ public class Customer {
 
     public String statement() {
 
-        String result = "Rental Record for " + getName() + "\n";
-        double totalAmount = 0;
-        int totalFrequentRenterPoints = 0;
+        String result = header();
+        result += body();
+        result += footer();
+        return result;
+    }
+
+    private String header() {
+        return "Rental Record for " + getName() + "\n";
+    }
+
+    private String footer() {
+        String result = "";
+        result += "Amount owed is " + totalAmount() + "\n";
+        result += "You earned " + totalFrequentRenterPoints()
+                + " frequent renter points";
+        return result;
+    }
+
+    private double totalAmount() {
+        double totalAmount=0.0;
         for (Rental each : rentals) {
-            totalFrequentRenterPoints = frequentRenterPoints(totalFrequentRenterPoints, each);
+
+            totalAmount +=  each.calculateAmount();
+
+        }
+        return totalAmount;
+    }
+
+    private String body() {
+        String result = "";
+        for (Rental each : rentals) {
+
 
             //show figures for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" +
                     each.calculateAmount() + "\n";
-            totalAmount +=  each.calculateAmount();
-        }
 
-        //add footer lines result
-        result += "Amount owed is " + totalAmount + "\n";
-        result += "You earned " + totalFrequentRenterPoints
-                + " frequent renter points";
+
+        }
         return result;
+    }
+
+    private int totalFrequentRenterPoints() {
+        int totalFrequentRenterPoints=0;
+        for (Rental each : rentals) {
+            totalFrequentRenterPoints = frequentRenterPoints(totalFrequentRenterPoints, each);
+        }
+        return totalFrequentRenterPoints;
     }
 
     private int frequentRenterPoints(int frequentRenterPoints, Rental each) {
