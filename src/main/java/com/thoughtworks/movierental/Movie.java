@@ -25,4 +25,12 @@ public class Movie {
         return title;
     }
 
+    public boolean newRelease() {
+        boolean release=false;
+        if(getPriceCode() == NEW_RELEASE)
+             release=true;
+        return release;
+    }
+
+
 }
