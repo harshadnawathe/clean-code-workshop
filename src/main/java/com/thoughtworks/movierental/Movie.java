@@ -5,6 +5,7 @@ public class Movie {
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
 
+
     private String title;
     private int priceCode;
 
@@ -33,4 +34,12 @@ public class Movie {
     }
 
 
+    public int frequentRenterPoints(int daysRented) {
+        int frequentRenterPoints=1;
+        // add bonus for a two day new release rental
+        if (newRelease()
+                &&
+                daysRented > 1) frequentRenterPoints++;
+        return frequentRenterPoints;
+    }
 }

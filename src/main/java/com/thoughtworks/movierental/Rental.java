@@ -3,7 +3,7 @@ package com.thoughtworks.movierental;
 public class Rental {
 
     private int daysRented;
-    private Movie movie;
+    Movie movie;
 
     public Rental(Movie movie, int daysRented) {
         this.movie = movie;
@@ -36,15 +36,15 @@ public class Rental {
                     amount += (getDaysRented() - 3) * 1.5;
                 break;
         }
+
+
         return amount;
     }
 
-    int frequentRenterPoints() {
-        int frequentRenterPoints=1;
-        // add bonus for a two day new release rental
-        if (getMovie().newRelease()
-                &&
-                getDaysRented() > 1) frequentRenterPoints++;
-        return frequentRenterPoints;
+    public int frequentRenterPoints(){
+        return movie.frequentRenterPoints(getDaysRented());
+    }
+    public String movieTitle() {
+        return movie.getTitle();
     }
 }

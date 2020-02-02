@@ -22,13 +22,14 @@ public class Customer {
     public String statement() {
         return new TextStatement(rentals, totalAmount(), totalFrequentRenterPoints(), name).generate();
     }
+    public String htmlStatement(){
+        return new HtmlStatement(rentals,totalAmount(),totalFrequentRenterPoints(),name).generate();
+    }
 
     private double totalAmount() {
         double totalAmount=0.0;
         for (Rental each : rentals) {
-
             totalAmount +=  each.calculateAmount();
-
         }
         return totalAmount;
     }
@@ -40,6 +41,5 @@ public class Customer {
         }
         return totalFrequentRenterPoints;
     }
-
 }
 
